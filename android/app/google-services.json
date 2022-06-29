@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "502339643701",
+    "project_id": "surveywebapptest",
+    "storage_bucket": "surveywebapptest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502339643701:android:c0ca0fe55b3ed75a84c47c",
+        "android_client_info": {
+          "package_name": "com.example.database_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502339643701-4ne4sdbu6f26brvn6pvklh49focg22b8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApg0tr2hnKtZ87eWVZhEbgs_ACTAEYciw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502339643701-4ne4sdbu6f26brvn6pvklh49focg22b8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "502339643701-83vhd537rnktdsi11uchm2e71r27q3q9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.surveyWebapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502339643701:android:de5c33922682b61d84c47c",
+        "android_client_info": {
+          "package_name": "com.example.survey_webapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502339643701-4ne4sdbu6f26brvn6pvklh49focg22b8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApg0tr2hnKtZ87eWVZhEbgs_ACTAEYciw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502339643701-4ne4sdbu6f26brvn6pvklh49focg22b8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "502339643701-83vhd537rnktdsi11uchm2e71r27q3q9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.surveyWebapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
