@@ -128,96 +128,20 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.purple.withOpacity(0.1),
               height: MediaQuery.of(context).size.height * 0.9, // - 500,
               width: MediaQuery.of(context).size.width * 0.9, //1920 - 500,
-              child: Column(children: [
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset1Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset2Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset3Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset4Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset5Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset6Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset7Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset8Score),
-                SizedBox(
-                  height: 20,
-                ),
-                rowTable(fasetScore: faset9Score),
-                SizedBox(
-                  height: 100,
-                ),
-                Stack(children: [
-                  BarChartCategories(),
-                  Center(
-                    child: Container(
-                      width: 500,
-                      // MediaQuery.of(context).size.width *
-                      // (1400 / MediaQuery.of(context).size.width),
-                      //color: Colors.grey.withOpacity(0.4),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 200,
-                          ),
-                          DottedLine(
-                            direction: Axis.vertical,
-                            lineLength: 265,
-                          ),
-                          SizedBox(
-                            width: 150,
-                          ),
-                          DottedLine(
-                            direction: Axis.vertical,
-                            lineLength: 265,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      BarChartRow(
-                        values: dom1,
-                      ),
-                      BarChartRow(
-                        values: dom2,
-                      ),
-                      BarChartRow(
-                        values: dom3,
-                      ),
-                      BarChartRow(
-                        values: dom4,
-                      ),
-                    ],
-                  ),
-                ]),
-              ]),
+              child: FasetChart(
+                  faset1Score: faset1Score,
+                  faset2Score: faset2Score,
+                  faset3Score: faset3Score,
+                  faset4Score: faset4Score,
+                  faset5Score: faset5Score,
+                  faset6Score: faset6Score,
+                  faset7Score: faset7Score,
+                  faset8Score: faset8Score,
+                  faset9Score: faset9Score,
+                  dom1: dom1,
+                  dom2: dom2,
+                  dom3: dom3,
+                  dom4: dom4),
             ),
           )),
         ),
@@ -238,6 +162,133 @@ class _MyHomePageState extends State<MyHomePage> {
       .snapshots()
       .map((snapshot) =>
           snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
+}
+
+class FasetChart extends StatelessWidget {
+  const FasetChart({
+    Key? key,
+    required this.faset1Score,
+    required this.faset2Score,
+    required this.faset3Score,
+    required this.faset4Score,
+    required this.faset5Score,
+    required this.faset6Score,
+    required this.faset7Score,
+    required this.faset8Score,
+    required this.faset9Score,
+    required this.dom1,
+    required this.dom2,
+    required this.dom3,
+    required this.dom4,
+  }) : super(key: key);
+
+  final int faset1Score;
+  final int faset2Score;
+  final int faset3Score;
+  final int faset4Score;
+  final int faset5Score;
+  final int faset6Score;
+  final int faset7Score;
+  final int faset8Score;
+  final int faset9Score;
+  final int dom1;
+  final int dom2;
+  final int dom3;
+  final int dom4;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset1Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset2Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset3Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset4Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset5Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset6Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset7Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset8Score),
+      SizedBox(
+        height: 20,
+      ),
+      rowTable(fasetScore: faset9Score),
+      SizedBox(
+        height: 100,
+      ),
+      Stack(children: [
+        BarChartCategories(),
+        Center(
+          child: Container(
+            width: 500,
+            // MediaQuery.of(context).size.width *
+            // (1400 / MediaQuery.of(context).size.width),
+            //color: Colors.grey.withOpacity(0.4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 200,
+                ),
+                DottedLine(
+                  direction: Axis.vertical,
+                  lineLength: 265,
+                ),
+                SizedBox(
+                  width: 150,
+                ),
+                DottedLine(
+                  direction: Axis.vertical,
+                  lineLength: 265,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            BarChartRow(
+              values: dom1,
+            ),
+            BarChartRow(
+              values: dom2,
+            ),
+            BarChartRow(
+              values: dom3,
+            ),
+            BarChartRow(
+              values: dom4,
+            ),
+          ],
+        ),
+      ]),
+    ]);
+  }
 }
 
 class BarChartCategories extends StatelessWidget {
