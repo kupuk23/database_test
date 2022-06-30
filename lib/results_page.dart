@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 import 'classes/class.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class ResultsPage extends StatefulWidget {
+  const ResultsPage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -21,10 +21,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ResultsPage> createState() => _ResultsPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ResultsPageState extends State<ResultsPage> {
   int faset1Score = 1;
   int faset2Score = 4;
   int faset3Score = 6;
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
+        // Here we take the value from the ResultsPage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
