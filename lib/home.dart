@@ -7,18 +7,21 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final ValueChanged<String> onTapped;
+  const HomePage({Key? key, required this.onTapped}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _textFormController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ScrollController con = ScrollController();
     double titleSize = 80;
-    var inputID;
+    String inputID = '';
     return Scaffold(
       body: CenteredView(
           child: Column(
@@ -66,27 +69,43 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 60,
-                          width: 200,
+                          height: 50,
+                          width: 100,
                           child: Expanded(
-                            child: TextField(
-                              controller: inputID,
-                              onChanged: (text) {
-                                setState(() {});
-                              },
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'ID',
+                            child: Form(
+                              key: formKey,
+                              child: TextFormField(
+                                controller: _textFormController,
+                                validator: (value) {
+                                  if (value!.isEmpty ||
+                                      !RegExp('[0-9]').hasMatch(value)) {
+                                    return "Enter ID Number Correctly";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'ID',
+                                ),
                               ),
                             ),
                           ),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         TextButton(
                             style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
                                         Colors.yellowAccent)),
-                            onPressed: () {},
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                print(_textFormController.text);
+                                widget.onTapped(_textFormController.text);
+                              }
+                            }, //
                             child: Text("Get Result"))
                       ],
                     ),

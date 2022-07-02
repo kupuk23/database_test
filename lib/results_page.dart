@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'classes/class.dart';
 
 class ResultsPage extends StatefulWidget {
-  const ResultsPage({Key? key, required this.title}) : super(key: key);
+  final String resultId;
+
+  const ResultsPage({Key? key, required this.resultId}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -17,8 +19,6 @@ class ResultsPage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
-  final String title;
 
   @override
   State<ResultsPage> createState() => _ResultsPageState();
@@ -53,51 +53,24 @@ class _ResultsPageState extends State<ResultsPage> {
     });
   }
 
-  _getSizes() {
-    final RenderBox renderBoxRed =
-        _tableKey.currentContext!.findRenderObject() as RenderBox;
-    final sizeRed = renderBoxRed.size;
-    print("Size of Red: $sizeRed ");
-  }
-
-  _getPositions() {
-    final RenderBox renderBoxRed =
-        _tableKey.currentContext!.findRenderObject() as RenderBox;
-    final positionRed = renderBoxRed.localToGlobal(Offset.zero);
-    //print("POSITION of Red: $positionRed ");
-  }
-
-  _afterLayout(_) {
-    _getPositions();
-    _getSizes();
-  }
-
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
     super.initState();
+    print('ID IS ${widget.resultId}');
   }
 
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
-    final user = <String, dynamic>{
-      "first": "Ada",
-      "last": "Lovelace",
-      "born": 1815
-    };
+    List<int> faset = [];
 
-    //PENTING
-    FirebaseFirestore.instance
-        .collection('users')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        if (doc['first'] == "Ada") {
-          final docID = doc.id;
-          print(docID);
+    db.collection('diaries').get().then((QuerySnapshot querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        if (doc['id'] == '12') {
+          faset.add(int.parse(doc['id']));
+          print(faset);
         }
-      });
+      }
     });
 
     // This method is rerun every time setState is called, for instance as done
@@ -106,62 +79,55 @@ class _ResultsPageState extends State<ResultsPage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the ResultsPage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Expanded(
-          child: Center(
-              // Center is a layout widget. It takes a single child and positions it
-              // in the middle of the parent.
+    return Title(
+      title: "asd",
+      color: Colors.black,
+      child: Scaffold(
+        appBar: AppBar(
+          // Here we take the value from the ResultsPage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(
+            widget.resultId,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Expanded(
+            child: Center(
+                // Center is a layout widget. It takes a single child and positions it
+                // in the middle of the parent.
+                child: Container(
+              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              color: Color.fromARGB(255, 220, 189, 189),
+              height: MediaQuery.of(context).size.height * 0.95, // - 500,
+              width: MediaQuery.of(context).size.width * 0.95, //1920 - 500,
               child: Container(
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            color: Color.fromARGB(255, 220, 189, 189),
-            height: MediaQuery.of(context).size.height * 0.95, // - 500,
-            width: MediaQuery.of(context).size.width * 0.95, //1920 - 500,
-            child: Container(
-              margin: EdgeInsets.all(10),
-              color: Colors.purple.withOpacity(0.1),
-              height: MediaQuery.of(context).size.height * 0.9, // - 500,
-              width: MediaQuery.of(context).size.width * 0.9, //1920 - 500,
-              child: FasetChart(
-                  faset1Score: faset1Score,
-                  faset2Score: faset2Score,
-                  faset3Score: faset3Score,
-                  faset4Score: faset4Score,
-                  faset5Score: faset5Score,
-                  faset6Score: faset6Score,
-                  faset7Score: faset7Score,
-                  faset8Score: faset8Score,
-                  faset9Score: faset9Score,
-                  dom1: dom1,
-                  dom2: dom2,
-                  dom3: dom3,
-                  dom4: dom4),
-            ),
-          )),
+                margin: EdgeInsets.all(10),
+                color: Colors.purple.withOpacity(0.1),
+                height: MediaQuery.of(context).size.height * 0.9, // - 500,
+                width: MediaQuery.of(context).size.width * 0.9, //1920 - 500,
+                child: FasetChart(
+                    faset1Score: faset1Score,
+                    faset2Score: faset2Score,
+                    faset3Score: faset3Score,
+                    faset4Score: faset4Score,
+                    faset5Score: faset5Score,
+                    faset6Score: faset6Score,
+                    faset7Score: faset7Score,
+                    faset8Score: faset8Score,
+                    faset9Score: faset9Score,
+                    dom1: dom1,
+                    dom2: dom2,
+                    dom3: dom3,
+                    dom4: dom4),
+              ),
+            )),
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (() {
-          db.collection("users").add(user).then((DocumentReference doc) =>
-              print('DocumentSnapshot added with ID: ${doc.id}'));
-        }),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
-  Stream<List<User>> readUsers() => FirebaseFirestore.instance
-      .collection('users')
-      .snapshots()
-      .map((snapshot) =>
-          snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
 }
 
 class FasetChart extends StatelessWidget {
