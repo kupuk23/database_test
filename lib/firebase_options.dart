@@ -21,11 +21,20 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return android;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for android - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -51,33 +60,5 @@ class DefaultFirebaseOptions {
     authDomain: 'surveywebapptest.firebaseapp.com',
     storageBucket: 'surveywebapptest.appspot.com',
     measurementId: 'G-BJYSSN4QX0',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyApg0tr2hnKtZ87eWVZhEbgs_ACTAEYciw',
-    appId: '1:502339643701:android:c0ca0fe55b3ed75a84c47c',
-    messagingSenderId: '502339643701',
-    projectId: 'surveywebapptest',
-    storageBucket: 'surveywebapptest.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCpjyQVQuDQJt42DwJtkuxipZvu0mF2MRA',
-    appId: '1:502339643701:ios:0f741b5bcf16e78a84c47c',
-    messagingSenderId: '502339643701',
-    projectId: 'surveywebapptest',
-    storageBucket: 'surveywebapptest.appspot.com',
-    iosClientId: '502339643701-bqtimeuv02n23ramv2am35i761kg1g98.apps.googleusercontent.com',
-    iosBundleId: 'com.example.databaseTest',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCpjyQVQuDQJt42DwJtkuxipZvu0mF2MRA',
-    appId: '1:502339643701:ios:0f741b5bcf16e78a84c47c',
-    messagingSenderId: '502339643701',
-    projectId: 'surveywebapptest',
-    storageBucket: 'surveywebapptest.appspot.com',
-    iosClientId: '502339643701-bqtimeuv02n23ramv2am35i761kg1g98.apps.googleusercontent.com',
-    iosBundleId: 'com.example.databaseTest',
   );
 }

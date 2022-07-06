@@ -38,10 +38,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       routeInformationParser: _routeInformationParser,
       routerDelegate: _routerDelegate,
-      title: "Assesment Report",
+      title: "Assessment Report",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: 'OpenSans',
+        primarySwatch: Colors.green,
         appBarTheme: AppBarTheme(
           color: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
@@ -72,7 +73,7 @@ class IdRouterDelegate extends RouterDelegate<IdRoutePath>
 
     if (_typedId == null) return IdRoutePath.home();
 
-    return IdRoutePath.details(int.parse(_typedId!));
+    return IdRoutePath.details(_typedId!);
   }
 
   // @override
@@ -119,11 +120,11 @@ class IdRouterDelegate extends RouterDelegate<IdRoutePath>
     }
 
     if (path.isDetailsPage) {
-      if (path.id! < 0) {
+      if (int.tryParse(path.id!) == null) {
         show404 = true;
         return;
       }
-      _typedId = path.id.toString();
+      _typedId = path.id;
     } else {
       _typedId = null;
     }
@@ -168,7 +169,7 @@ class IdRouteInformationParser extends RouteInformationParser<IdRoutePath> {
 
       if (id == null) return IdRoutePath.unknown();
       print("id $id");
-      return IdRoutePath.details(id);
+      return IdRoutePath.details(id.toString());
     }
 
     // Handle unknown routes

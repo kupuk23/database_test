@@ -14,11 +14,11 @@ class NavBar extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              NavBarItem('Home'),
+              NavBarItem('About Us'),
               const SizedBox(
                 width: 60,
               ),
-              NavBarItem('About Us'),
+              NavBarItem('Assessment Centre'),
             ],
           )
         ],

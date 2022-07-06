@@ -1,5 +1,5 @@
 class IdRoutePath {
-  final int? id;
+  final String? id;
   final bool isUnknown;
 
   IdRoutePath.home()
